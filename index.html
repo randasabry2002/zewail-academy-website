@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Zewail Academy</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <img src="logo.jpg" alt="شعار الأكاديمية" />
+      <h1>Zewail Academy</h1>
+    </div>
+  </header>
+
+  <div class="sidebar">
+    <a href="index.html" class="active">تسجيل الطلاب</a>
+    <a href="admin.html">إدارة المدرسين</a>
+  </div>
+
+  <div class="main">
+    <section class="card">
+      <h2>تسجيل طالب جديد</h2>
+
+      <input type="text" id="studentName" placeholder="اسم الطالب" />
+      <input type="text" id="studentPhone" placeholder="رقم التليفون" />
+
+      <h3>اختر المدرسين:</h3>
+      <div id="teacherCheckboxes"></div>
+
+      <button onclick="registerStudent()">تسجيل</button>
+    </section>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+
+</html>
