@@ -10,20 +10,21 @@
 <body>
   <header>
     <div class="header-content">
-      <img src="logo.jpg" alt="شعار الأكاديمية" />
+      <img src="logo-right.jpg" class="logo-right" alt="شعار يمين" />
       <h1>Zewail Academy</h1>
+      <img src="logo-left.jpg" class="logo-left" alt="شعار يسار" />
     </div>
   </header>
 
   <div class="sidebar">
     <a href="index.html" class="active">تسجيل الطلاب</a>
     <a href="admin.html">إدارة المدرسين</a>
+    <a href="#" onclick="logout()" style="color: red;">خروج</a>
   </div>
 
   <div class="main">
     <section class="card">
       <h2>تسجيل طالب جديد</h2>
-
       <input type="text" id="studentName" placeholder="اسم الطالب" />
       <input type="text" id="studentPhone" placeholder="رقم التليفون" />
 

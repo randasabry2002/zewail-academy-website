@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+<script>
+  if (localStorage.getItem("isAdmin") !== "true") {
+    alert("غير مصرح لك بالدخول إلى هذه الصفحة");
+    window.location.href = "index.html";
+  }
+</script>
 
 <head>
   <meta charset="UTF-8" />
-  <title>Zewail Academy</title>
+  <title>لوحة التحكم - Zewail Academy</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
   <header>
     <div class="header-content">
-      <img src="logo.jpg" alt="شعار الأكاديمية" />
+      <img src="logo-right.jpg" class="logo-right" alt="شعار يمين" />
       <h1>Zewail Academy</h1>
+      <img src="logo-left.jpg" class="logo-left" alt="شعار يسار" />
     </div>
   </header>
 
   <div class="sidebar">
-    <a href="index.html">تسجيل الطلاب</a>
+    <a href="student.html">تسجيل الطلاب</a>
     <a href="admin.html" class="active">إدارة المدرسين</a>
+    <a href="#" onclick="logout()" style="color: red;">خروج</a>
   </div>
 
   <div class="main">
@@ -34,7 +42,6 @@
       <select id="teacherFilter" onchange="loadStudents()">
         <option value="">عرض الكل</option>
       </select>
-
       <div id="studentListContainer"></div>
     </section>
   </div>

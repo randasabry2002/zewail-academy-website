@@ -54,7 +54,15 @@ window.loadTeachers = function () {
 
       if (container) {
         const div = document.createElement("div");
-        div.innerHTML = `<label><input type="checkbox" name="teachers" value="${teacher.name}">${teacher.name} - ${teacher.subject}</label>`;
+        div.innerHTML = `
+  <label class="teacher-card">
+    <input type="checkbox" name="teachers" value="${teacher.name}">
+    <div class="teacher-info">
+      <span class="teacher-name">${teacher.name}</span>
+      <span class="teacher-subject">${teacher.subject}</span>
+    </div>
+  </label>
+`;
         container.appendChild(div);
       }
 
@@ -150,3 +158,8 @@ window.addEventListener("DOMContentLoaded", () => {
     loadStudents();
   }
 });
+
+window.logout = function () {
+  localStorage.removeItem("isAdmin");
+  location.href = "index.html";
+};
