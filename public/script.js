@@ -6,6 +6,7 @@ import {
   doc,
   onSnapshot,
   getDocs,
+  updateDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 // تسجيل الطالب
@@ -163,3 +164,51 @@ window.logout = function () {
   localStorage.removeItem("isAdmin");
   location.href = "index.html";
 };
+
+// تحميل قائمة المدرسين
+window.loadTeachersAdmin = function () {
+  const listContainer = document.getElementById("teacherList");
+  const teachersRef = collection(db, "teachers");
+
+  onSnapshot(teachersRef, (snapshot) => {
+    listContainer.innerHTML = "";
+    snapshot.forEach((docSnap) => {
+      const teacher = docSnap.data();
+      const id = docSnap.id;
+
+      const card = document.createElement("div");
+      card.className = "teacher-card-admin";
+      card.innerHTML = `
+        <strong>${teacher.name}</strong> - ${teacher.subject}
+        <div class="actions">
+          <button onclick="editTeacher('${id}', '${teacher.name}', '${teacher.subject}')">✏️ تعديل</button>
+          <button onclick="deleteTeacher('${id}')">🗑️ حذف</button>
+        </div>
+      `;
+      listContainer.appendChild(card);
+    });
+  });
+};
+
+// حذف مدرس
+window.deleteTeacher = async function (id) {
+  if (confirm("هل أنت متأكد من حذف هذا المدرس؟")) {
+    await deleteDoc(doc(db, "teachers", id));
+  }
+};
+
+// تعديل مدرس
+window.editTeacher = function (id, currentName, currentSubject) {
+  const name = prompt("اسم المدرس الجديد:", currentName);
+  const subject = prompt("المادة الجديدة:", currentSubject);
+
+  if (name && subject) {
+    const teacherRef = doc(db, "teachers", id);
+    updateDoc(teacherRef, { name, subject });
+  }
+};
+
+// تحميل عند فتح الصفحة
+if (document.getElementById("teacherList")) {
+  loadTeachersAdmin();
+}

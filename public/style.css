@@ -329,6 +329,37 @@ body.login-page {
   object-position: center;
 }
 
+.teacher-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.teacher-card-admin {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 10px;
+  min-width: 220px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.teacher-card-admin .actions {
+  margin-top: 10px;
+}
+
+.teacher-card-admin button {
+  margin-left: 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.teacher-card-admin button:hover {
+  background-color: #eee;
+}
+
 /* استجابة لشاشات صغيرة */
 @media (max-width: 768px) {
   .login-split-screen {
