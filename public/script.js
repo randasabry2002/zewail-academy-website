@@ -13,7 +13,7 @@ import {
 window.registerStudent = async function () {
   const name = document.getElementById("studentName").value;
   const phone = document.getElementById("studentPhone").value;
-  const grade = document.getElementById("studentGrade").value; // جديد
+  const grade = document.getElementById("studentGrade").value;
   const checkboxes = document.querySelectorAll(
     "input[name='teachers']:checked"
   );
@@ -36,7 +36,7 @@ window.registerStudent = async function () {
 
   document.getElementById("studentName").value = "";
   document.getElementById("studentPhone").value = "";
-  document.getElementById("studentGrade").value = ""; // جديد
+  document.getElementById("studentGrade").value = "";
   checkboxes.forEach((cb) => (cb.checked = false));
 
   if (typeof loadStudents === "function") loadStudents();
