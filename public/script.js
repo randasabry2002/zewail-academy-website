@@ -13,12 +13,13 @@ import {
 window.registerStudent = async function () {
   const name = document.getElementById("studentName").value;
   const phone = document.getElementById("studentPhone").value;
+  const grade = document.getElementById("studentGrade").value; // جديد
   const checkboxes = document.querySelectorAll(
     "input[name='teachers']:checked"
   );
   const selectedTeachers = Array.from(checkboxes).map((cb) => cb.value);
 
-  if (!name || !phone || selectedTeachers.length === 0) {
+  if (!name || !phone || !grade || selectedTeachers.length === 0) {
     alert("من فضلك ادخل كل البيانات واختر مدرسًا واحدًا على الأقل");
     return;
   }
@@ -26,6 +27,7 @@ window.registerStudent = async function () {
   await addDoc(collection(db, "students"), {
     name,
     phone,
+    grade, // جديد
     teachers: selectedTeachers,
     createdAt: new Date().toISOString(),
   });
@@ -34,6 +36,7 @@ window.registerStudent = async function () {
 
   document.getElementById("studentName").value = "";
   document.getElementById("studentPhone").value = "";
+  document.getElementById("studentGrade").value = ""; // جديد
   checkboxes.forEach((cb) => (cb.checked = false));
 
   if (typeof loadStudents === "function") loadStudents();
@@ -119,6 +122,7 @@ window.loadStudents = function () {
           <tr>
             <th>الاسم</th>
             <th>التليفون</th>
+            <th>الصف</th>
             <th>المدرسين</th>
             <th>حذف</th>
           </tr>
@@ -138,6 +142,7 @@ window.loadStudents = function () {
       tr.innerHTML = `
         <td>${student.name}</td>
         <td>${student.phone}</td>
+        <td>${student.grade || "—"}</td>
         <td>${student.teachers.join(", ")}</td>
         <td><button onclick="deleteStudent('${docSnap.id}')">🗑️</button></td>
       `;
